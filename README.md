@@ -8,6 +8,6 @@ The user will type the word with the name of the asset ((variable "word", exampl
 https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english
 
 
-A negative sentiment would imply a bad moment for investing. Positive sentiment would mean an upward trend.
+A negative sentiment would imply a bad moment for investing. A positive sentiment would mean an upward trend.
 
 The project will be extended by introducing graphs with the historical values of the stock and crypto assets. In the end it is intended to become a tool for helping the investors to make decissions about when buying or selling. The scripts will be converted into a shareable web app by means of the use of streamlit. 
