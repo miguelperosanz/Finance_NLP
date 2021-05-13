@@ -3,7 +3,7 @@
 
 This newborn project uses a Machine Learning model based in Natural Language Processing for helping the people to invest in the stock and crypto market.
 
-The script scrapes news from the web "Newslookup.com" regarding one word given by the user ((variable "word", examples: 'Bitcoin', 'Ethereum', 'Google', 'Apple'...). Afterwards, the model "distilbert-base-uncased-finetuned-sst-2-english" is applied in order to get the sentiment of the scraped news. You can find more info about the machine learning model here:
+The user will type the word with the name of the asset ((variable "word", examples: 'Bitcoin', 'Ethereum', 'Google', 'Apple'...). The script scrapes news connected with the given asset from the web "Newslookup.com". Afterwards, the model "distilbert-base-uncased-finetuned-sst-2-english" is applied in order to get the sentiment of the scraped news. You can find more info about this Natural language processing machine learning model here:
 
 https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english
 
