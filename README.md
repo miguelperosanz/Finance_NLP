@@ -1,4 +1,4 @@
-# Finance Natural Language Processing and sentiment analysis
+# Natural Language Processing and sentiment analysis applied in finance
 
 
 This newborn project uses a Machine Learning model based in Natural Language Processing for helping the people to invest in the stock and crypto market.
