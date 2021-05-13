@@ -1,7 +1,7 @@
 # Finance Natural Language Processing and sentiment analysis
 
 
-This project uses a Machine Learning model based in Natural Language Processing for helping the people to invest in the stock and crypto market.
+This newborn project uses a Machine Learning model based in Natural Language Processing for helping the people to invest in the stock and crypto market.
 
 The script scrapes news from the web "Newslookup.com" regarding one word given by the user ((variable "word", examples: 'Bitcoin', 'Ethereum', 'Google', 'Apple'...). Afterwards, the model "distilbert-base-uncased-finetuned-sst-2-english" is applied in order to get the sentiment of the scraped news. You can find more info about the machine learning model here:
 
