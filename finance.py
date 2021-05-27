@@ -7,6 +7,26 @@ import numpy as np
 import re
 import requests
 from bs4 import BeautifulSoup
+import csv
+
+
+#CHOOSING ASSET MENU:
+    
+def choosing_asset():
+    
+    with open('symbols.csv', newline='') as f:
+        reader = csv.reader(f)
+        data = list(reader)
+
+
+    option = st.selectbox('Select your asset',data)
+    st.write('You selected:', option)
+
+    name = option[0]
+    ticker = option[1]
+
+    return(name,ticker)
+
 
 
 #WEBSCRAPING FUNCTION:
@@ -58,13 +78,15 @@ def getting_feeling(group_of_news):
 
 #VISUALIZATION FUNCTION:
 
-def visualization(negative,positive):
+def visualization(negative,positive,ticker):
+    
+    print('ticker in visualization =',ticker)
     
     st.write("""
     # Positivity in the news during the last days:
     """)
              
-    tickerSymbol = 'ETH-USD'
+    tickerSymbol = str(ticker)
             
     labels = 'Negativity', 'Positivity'
     sizes = [negative, positive]
@@ -87,7 +109,7 @@ def visualization(negative,positive):
     
     tickerData = yf.Ticker(tickerSymbol)
     
-    tickerDf = tickerData.history(period='1d', start='2016-5-25', end='2021-5-12')
+    tickerDf = tickerData.history(period='1d', start='2015-5-10', end='2021-5-12')
     
     
     st.line_chart(tickerDf.Close)
@@ -101,12 +123,18 @@ def visualization(negative,positive):
 
 def main():
     
-    news = scraping('Bitcoin') 
+    (name,ticker) = choosing_asset()
+    
+    
+    news = scraping(name) 
+    
+#    print(news)
     (negative_feeling, positive_feeling) = getting_feeling(news)
 
     print('negative feeling = ',negative_feeling)
     print('positive feeling = ',positive_feeling)
-    visualization(negative_feeling,positive_feeling)
+    visualization(negative_feeling,positive_feeling,ticker)
+
 
 if __name__ == "__main__":
     main()
