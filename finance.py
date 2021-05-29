@@ -8,6 +8,9 @@ import re
 import requests
 from bs4 import BeautifulSoup
 import csv
+from plotly import graph_objs as go
+import pandas as pd
+from datetime import datetime
 
 
 #CHOOSING ASSET MENU:
@@ -46,7 +49,11 @@ def scraping(word):
         subheader = soup.find('div', {'id' : 'results'}).find_all('p', {'class' : 'desc'})
 
         for headerclean in header:
-            news.append(headerclean.text)             
+            news.append(headerclean.text)   
+            
+    st.subheader('news')
+    st.write(news)
+            
     return (news)
 
 
@@ -80,10 +87,10 @@ def getting_feeling(group_of_news):
 
 def visualization(negative,positive,ticker):
     
-    print('ticker in visualization =',ticker)
+    #POSITIVITY PIECHART
     
     st.write("""
-    # Positivity in the news during the last days:
+    # Positivity in the news during the last 36 hours:
     """)
              
     tickerSymbol = str(ticker)
@@ -101,6 +108,9 @@ def visualization(negative,positive,ticker):
     
     st.pyplot(fig1)
     
+    
+    #HISTORICAL PRICES
+    
     st.write("""
     # Simple Stock Price App 
     
@@ -108,13 +118,15 @@ def visualization(negative,positive,ticker):
     
     
     tickerData = yf.Ticker(tickerSymbol)
+
     
-    tickerDf = tickerData.history(period='1d', start='2015-5-10', end='2021-5-12')
+    tickerDf = tickerData.history(period='1d', start='2000-01-01', end='2021-5-12')
     
     
     st.line_chart(tickerDf.Close)
     st.line_chart(tickerDf.Volume)
     
+
     return()
 
 
