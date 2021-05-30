@@ -36,8 +36,16 @@ def choosing_asset():
 
 def scraping(word):
     
+#    result_news = st.button("scrape news and calculate positivity/negativity")
+    
+    #st.write (result_news)
+    
     news=[]
-    for i in range(1,6):
+    
+#    if result_news:
+    
+        
+    for i in range(1,2):
 
         URL = 'https://newslookup.com/results?p='+ str(i) +'&q='+ word +'&dp=5&mt=-1&ps=10&s=&cat=-1&fmt=&groupby=no&site=&dp=5'
         res = requests.get(URL)
@@ -50,10 +58,7 @@ def scraping(word):
 
         for headerclean in header:
             news.append(headerclean.text)   
-            
-    st.subheader('news')
-    st.write(news)
-            
+           
     return (news)
 
 
@@ -85,7 +90,7 @@ def getting_feeling(group_of_news):
 
 #VISUALIZATION FUNCTION:
 
-def visualization(negative,positive,ticker):
+def visualization_positivity(negative,positive):
     
     #POSITIVITY PIECHART
     
@@ -93,7 +98,7 @@ def visualization(negative,positive,ticker):
     # Positivity in the news during the last 36 hours:
     """)
              
-    tickerSymbol = str(ticker)
+    
             
     labels = 'Negativity', 'Positivity'
     sizes = [negative, positive]
@@ -108,22 +113,34 @@ def visualization(negative,positive,ticker):
     
     st.pyplot(fig1)
     
+    return()
+
+
+def visualization_history(ticker):    
     
     #HISTORICAL PRICES
     
-    st.write("""
-    # Simple Stock Price App 
+    tickerSymbol = str(ticker)
     
-    Shown are the stock closing price and volume""")
+#    historical_values = st.button("show historical values")
+    
+    #if historical_values:
+    
+    
     
     
     tickerData = yf.Ticker(tickerSymbol)
 
     
-    tickerDf = tickerData.history(period='1d', start='2000-01-01', end='2021-5-12')
+    tickerDf = tickerData.history(period='1d', start='2000-01-01', end='2021-01-01')
     
+    
+    st.write("""# Stock closing price""")
     
     st.line_chart(tickerDf.Close)
+    
+    st.write("""# Stock volume""")
+    
     st.line_chart(tickerDf.Volume)
     
 
@@ -138,15 +155,22 @@ def main():
     (name,ticker) = choosing_asset()
     
     
-    news = scraping(name) 
+    result_news = st.button("scrape news and calculate positivity/negativity")    
+    historical_values = st.button("show historical values")
+    
+    if result_news:
+    
+        news = scraping(name) 
     
 #    print(news)
-    (negative_feeling, positive_feeling) = getting_feeling(news)
+        (negative_feeling, positive_feeling) = getting_feeling(news)
 
-    print('negative feeling = ',negative_feeling)
-    print('positive feeling = ',positive_feeling)
-    visualization(negative_feeling,positive_feeling,ticker)
+        visualization_positivity(negative_feeling,positive_feeling)
 
+
+    if historical_values:
+
+        visualization_history(ticker)
 
 if __name__ == "__main__":
     main()
