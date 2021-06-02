@@ -33,9 +33,6 @@ def choosing_asset():
 
 def scraping(word):
     
-    
-    
-    
     news=[]
     
         
