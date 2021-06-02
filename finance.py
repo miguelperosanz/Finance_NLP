@@ -4,13 +4,10 @@ import matplotlib.pyplot as plt
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline, AutoModel
 import torch
 import numpy as np 
-import re
 import requests
 from bs4 import BeautifulSoup
 import csv
-from plotly import graph_objs as go
-import pandas as pd
-from datetime import datetime
+
 
 
 #CHOOSING ASSET MENU:
@@ -20,32 +17,29 @@ def choosing_asset():
     with open('symbols.csv', newline='') as f:
         reader = csv.reader(f)
         data = list(reader)
-
-
-    option = st.selectbox('Select your asset',data)
-    st.write('You selected:', option)
-
+    
+    
+    option = st.sidebar.selectbox('Select your financial asset (crypto or stock market)', data, index=0, format_func=lambda o: o[0] +' (' + o[1] +')')
+   
     name = option[0]
     ticker = option[1]
+    
 
     return(name,ticker)
-
-
+    
+ 
 
 #WEBSCRAPING FUNCTION:
 
 def scraping(word):
     
-#    result_news = st.button("scrape news and calculate positivity/negativity")
     
-    #st.write (result_news)
+    
     
     news=[]
     
-#    if result_news:
-    
         
-    for i in range(1,2):
+    for i in range(1,6):
 
         URL = 'https://newslookup.com/results?p='+ str(i) +'&q='+ word +'&dp=5&mt=-1&ps=10&s=&cat=-1&fmt=&groupby=no&site=&dp=5'
         res = requests.get(URL)
@@ -58,7 +52,8 @@ def scraping(word):
 
         for headerclean in header:
             news.append(headerclean.text)   
-           
+            
+
     return (news)
 
 
@@ -90,7 +85,7 @@ def getting_feeling(group_of_news):
 
 #VISUALIZATION FUNCTION:
 
-def visualization_positivity(negative,positive):
+def visualization_positivity(negative, positive):
     
     #POSITIVITY PIECHART
     
@@ -113,26 +108,22 @@ def visualization_positivity(negative,positive):
     
     st.pyplot(fig1)
     
+    
+    
     return()
 
 
-def visualization_history(ticker):    
+def visualization_history(ticker, start_date, end_date):    
     
     #HISTORICAL PRICES
     
     tickerSymbol = str(ticker)
-    
-#    historical_values = st.button("show historical values")
-    
-    #if historical_values:
-    
-    
-    
-    
-    tickerData = yf.Ticker(tickerSymbol)
 
     
-    tickerDf = tickerData.history(period='1d', start='2000-01-01', end='2021-01-01')
+    tickerData = yf.Ticker(tickerSymbol)
+    
+
+    tickerDf = tickerData.history(period='1d', start=start_date , end=end_date)
     
     
     st.write("""# Stock closing price""")
@@ -152,25 +143,43 @@ def visualization_history(ticker):
 
 def main():
     
+    
     (name,ticker) = choosing_asset()
     
+    st.sidebar.header("Natural Language Processing:")
+ 
     
-    result_news = st.button("scrape news and calculate positivity/negativity")    
-    historical_values = st.button("show historical values")
     
+    result_news = st.sidebar.button("Scrape news and analyze sentiment")   
+    
+    
+    st.sidebar.header("Technical analysis:")
+    
+    start_date = st.sidebar.date_input('Start Date')
+    end_date = st.sidebar.date_input('End Date')
+        
+    
+    historical_values = st.sidebar.button("Show values")
+
+
     if result_news:
+        
+        
     
         news = scraping(name) 
-    
-#    print(news)
+
         (negative_feeling, positive_feeling) = getting_feeling(news)
 
-        visualization_positivity(negative_feeling,positive_feeling)
+        visualization_positivity(negative_feeling, positive_feeling)
+        
+
+        st.write(news)
+        
 
 
     if historical_values:
-
-        visualization_history(ticker)
+        
+        visualization_history(ticker, start_date, end_date)
 
 if __name__ == "__main__":
     main()
