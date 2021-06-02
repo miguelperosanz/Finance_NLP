@@ -113,7 +113,7 @@ def visualization_positivity(negative, positive):
     return()
 
 
-def visualization_history(ticker, start_date, end_date):    
+def visualization_history(ticker, start_date, end_date, chosen_interval):    
     
     #HISTORICAL PRICES
     
@@ -123,7 +123,7 @@ def visualization_history(ticker, start_date, end_date):
     tickerData = yf.Ticker(tickerSymbol)
     
 
-    tickerDf = tickerData.history(period='1d', start=start_date , end=end_date)
+    tickerDf = tickerData.history(interval=chosen_interval, start=start_date , end=end_date)
     
     
     st.write("""# Stock closing price""")
@@ -133,6 +133,7 @@ def visualization_history(ticker, start_date, end_date):
     st.write("""# Stock volume""")
     
     st.line_chart(tickerDf.Volume)
+    
     
 
     return()
@@ -155,8 +156,9 @@ def main():
     
     st.sidebar.header("Technical analysis:")
     
-    start_date = st.sidebar.date_input('Start Date')
-    end_date = st.sidebar.date_input('End Date')
+    start_date = st.sidebar.date_input('Start Date (year/month/day)')
+    end_date = st.sidebar.date_input('End Date (year/month/day)')
+    chosen_interval = st.sidebar.selectbox('Select the interval',('1m','2m','5m','15m','30m','60m','90m','1h','1d','5d','1wk','1mo','3mo'))
         
     
     historical_values = st.sidebar.button("Show values")
@@ -179,7 +181,7 @@ def main():
 
     if historical_values:
         
-        visualization_history(ticker, start_date, end_date)
+        visualization_history(ticker, start_date, end_date, chosen_interval)
 
 if __name__ == "__main__":
     main()
