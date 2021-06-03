@@ -7,6 +7,7 @@ import numpy as np
 import requests
 from bs4 import BeautifulSoup
 import csv
+from datetime import date
 
 
 
@@ -26,30 +27,156 @@ def choosing_asset():
     
 
     return(name,ticker)
-    
+
  
 
 #WEBSCRAPING FUNCTION:
 
-def scraping(word):
+def scraping(word, period):
+    
+    def hours():
+        
+        for i in range(1,6):
+    
+            URL = 'https://newslookup.com/results?p='+ str(i) +'&q='+ word +'&dp=5&mt=-1&ps=10&s=&cat=-1&fmt=&groupby=no&site=&dp=5&tp='+ str(number)
+                
+            res = requests.get(URL)
+            res.raise_for_status()
+            content = res.content
+            soup = BeautifulSoup(content, 'html.parser')
+        
+            header = soup.find('div', {'id' : 'results'}).find_all('a', {'class' : 'title'})
+            subheader = soup.find('div', {'id' : 'results'}).find_all('p', {'class' : 'desc'})
+        
+            for headerclean in header:
+                news.append(headerclean.text)
+        
+        return()
+    
+    
+    def years():
+        
+        for i in range(1,6):
+    
+            URL = 'https://newslookup.com/results?p='+ str(i) +'&q='+ word +'&dp=5&mt=-1&ps=10&s=&cat=-1&fmt=&groupby=no&site=&dp=5&tp=Y'+ str(year)
+            print('URL = ', URL)    
+            res = requests.get(URL)
+            res.raise_for_status()
+            content = res.content
+            soup = BeautifulSoup(content, 'html.parser')
+        
+            header = soup.find('div', {'id' : 'results'}).find_all('a', {'class' : 'title'})
+            subheader = soup.find('div', {'id' : 'results'}).find_all('p', {'class' : 'desc'})
+        
+            for headerclean in header:
+                news.append(headerclean.text)
+        
+        return()    
+    
+    
+    
+    
     
     news=[]
+    current_year = date.today().year
     
+    if period == '< 36 hours':
         
-    for i in range(1,6):
-
-        URL = 'https://newslookup.com/results?p='+ str(i) +'&q='+ word +'&dp=5&mt=-1&ps=10&s=&cat=-1&fmt=&groupby=no&site=&dp=5'
-        res = requests.get(URL)
-        res.raise_for_status()
-        content = res.content
-        soup = BeautifulSoup(content, 'html.parser')
-
-        header = soup.find('div', {'id' : 'results'}).find_all('a', {'class' : 'title'})
-        subheader = soup.find('div', {'id' : 'results'}).find_all('p', {'class' : 'desc'})
-
-        for headerclean in header:
-            news.append(headerclean.text)   
+        for i in range(1,6):
+    
+            URL = 'https://newslookup.com/results?p='+ str(i) +'&q='+ word +'&dp=5&mt=-1&ps=10&s=&cat=-1&fmt=&groupby=no&site=&dp=5'
+            res = requests.get(URL)
+            res.raise_for_status()
+            content = res.content
+            soup = BeautifulSoup(content, 'html.parser')
+    
+            header = soup.find('div', {'id' : 'results'}).find_all('a', {'class' : 'title'})
+            subheader = soup.find('div', {'id' : 'results'}).find_all('p', {'class' : 'desc'})
+    
+            for headerclean in header:
+                news.append(headerclean.text)
+    
+    
+    elif (period == 'Last hour'):
+        number = 1      
+        hours()
+                
+    elif (period == '< 2 hours'):
+        number = 2          
+        hours()
+                
+    elif (period == '< 4 hours'):
+        number = 4          
+        hours()
+        
+    elif (period == '< 6 hours'):
+        number = 6           
+        hours()
+        
+    elif (period == '< 12 hours'):
+        number = 12           
+        hours()
             
+    elif (period == '< 24 hours'):
+        number = 24           
+        hours()
+        
+    elif (period == '< 48 hours'):
+        number = 48           
+        hours()        
+
+    elif (period == '< 72 hours'):
+        number = 72           
+        hours()
+        
+    elif (period == '< 7 days'):
+        number = 168           
+        hours()
+        
+    elif (period == '< 14 days'):
+        number = 336           
+        hours()
+        
+    elif (period == '< 30 days'):
+        number = 720           
+        hours()
+        
+    elif (period == '> 30 days ' + str(current_year)):
+        number = -720           
+        hours()
+               
+    elif (period == current_year-1):
+        year = current_year-1
+        years() 
+        
+    elif (period == current_year-2): 
+        year = current_year-2
+        years() 
+        
+    elif (period == current_year-3): 
+        year = current_year-3
+        years()  
+
+    elif (period == current_year-4):
+        year = current_year-4
+        years() 
+        
+    elif (period == current_year-5): 
+        year = current_year-5
+        years() 
+        
+    elif (period == current_year-6):
+        year = current_year-6
+        years() 
+
+    elif (period == current_year-7):
+        year = current_year-7
+        years() 
+        
+    elif (period == current_year-8):
+        year = current_year-8
+        years()     
+        
 
     return (news)
 
@@ -80,18 +207,11 @@ def getting_feeling(group_of_news):
 
 
 
-#VISUALIZATION FUNCTION:
+#VISUALIZATION POSITIVITY OF THE NEWS:
 
 def visualization_positivity(negative, positive):
-    
-    #POSITIVITY PIECHART
-    
-    st.write("""
-    # Positivity in the news during the last 36 hours:
-    """)
-             
-    
-            
+
+          
     labels = 'Negativity', 'Positivity'
     sizes = [negative, positive]
     explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
@@ -110,7 +230,10 @@ def visualization_positivity(negative, positive):
     return()
 
 
-def visualization_history(ticker, start_date, end_date, chosen_interval):    
+#VISIUALIZATION HISTORICAL VALUES
+
+def visualization_history(ticker, start_date, end_date, chosen_interval):  
+    import sys
     
     #HISTORICAL PRICES
     
@@ -126,6 +249,8 @@ def visualization_history(ticker, start_date, end_date, chosen_interval):
     st.write("""# Stock closing price""")
     
     st.line_chart(tickerDf.Close)
+
+
     
     st.write("""# Stock volume""")
     
@@ -145,7 +270,12 @@ def main():
     (name,ticker) = choosing_asset()
     
     st.sidebar.header("Natural Language Processing:")
+    
+    current_year = date.today().year
  
+    period = st.sidebar.selectbox('Period of the news',('Last hour','< 2 hours','< 4 hours','< 6 hours','< 12 hours','< 24 hours',
+    '< 36 hours','< 48 hours','< 72 hours','< 7 days','< 14 days','< 30 days','> 30 days ' + str(current_year), current_year-1, 
+    current_year-2, current_year-3, current_year-4, current_year-5, current_year-6, current_year-7, current_year-8))    
     
     
     result_news = st.sidebar.button("Scrape news and analyze sentiment")   
@@ -165,7 +295,7 @@ def main():
         
         
     
-        news = scraping(name) 
+        news = scraping(name, period) 
 
         (negative_feeling, positive_feeling) = getting_feeling(news)
 
