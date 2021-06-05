@@ -233,32 +233,142 @@ def visualization_positivity(negative, positive):
 #VISIUALIZATION HISTORICAL VALUES
 
 def visualization_history(ticker, start_date, end_date, chosen_interval):  
-    import sys
+  
     
-    #HISTORICAL PRICES
+    #SYMBOLS
     
     tickerSymbol = str(ticker)
 
-    
     tickerData = yf.Ticker(tickerSymbol)
+       
     
+    #DATES FOR CLOSE AND VOLUME    
 
-    tickerDf = tickerData.history(interval=chosen_interval, start=start_date , end=end_date)
+    tickerDf = tickerData.history(interval=chosen_interval, start=start_date, end=end_date)
     
+    
+    #CLOSING PRICE
     
     st.write("""# Stock closing price""")
     
-    st.line_chart(tickerDf.Close)
-
-
+    st.line_chart(data = tickerDf.Close)
+    
+    
+    #VOLUME
     
     st.write("""# Stock volume""")
     
-    st.line_chart(tickerDf.Volume)
+    
+    st.line_chart(data = tickerDf.Volume)
     
     
 
     return()
+
+
+#VISUALIZATION HISTORICAL VALUES MAXIMAL PERIOD
+
+
+def visualization_history_maxperiod(ticker): 
+    
+    tickerSymbol = str(ticker)
+
+    tickerData = yf.Ticker(tickerSymbol)
+    
+    tickerDf_max = tickerData.history(period = "Max")
+    
+    st.write("""# Stock closing price""")
+    
+    st.line_chart(data = tickerDf_max.Close)
+    
+    st.write("""# Stock volume""")
+    
+    st.line_chart(data = tickerDf_max.Volume)
+
+    return()
+
+
+
+# FUNCTION TO DISPLAY EXTRA INFO
+
+def extra_info(ticker):
+    
+    
+    tickerSymbol = str(ticker)
+
+    tickerData = yf.Ticker(tickerSymbol)
+    
+    
+    
+    #ACTIONS (DIVIDENDS, SPLITS)
+    
+    
+    st.write("""# Actions (dividends, splits)""", tickerData.actions)
+    
+    
+    #HISTORICAL MARKET DATA
+    
+    
+    st.write("""# Historical market data""", tickerData.history(period="max"))
+    
+    
+    #FINANCIALS
+    
+    st.write("""# Financials""", tickerData.financials)
+    
+    st.write("""# Quarterly financials""", tickerData.quarterly_financials)
+    
+    
+    #MAJOR HOLDERS:
+            
+    st.write("""# Major Holders""", tickerData.major_holders)
+
+
+    #INSTITUTIONAL HOLDERS:
+            
+    st.write("""# Institutional Holders""", tickerData.institutional_holders)
+    
+    
+    #BALANCE SHEET
+    
+    st.write("""# Balance sheet""", tickerData.balance_sheet)
+    
+    st.write("""# Quarterly balance sheet""", tickerData.quarterly_balance_sheet)
+    
+    
+    #CASHFLOW:
+            
+    st.write("""# Cashflow""", tickerData.cashflow)
+    
+    st.write("""# Quarterly cash flow""", tickerData.quarterly_cashflow)
+    
+    
+    
+    #EARNINGS:
+            
+    st.write("""# Earnings""", tickerData.earnings)
+    
+    st.write("""# Quarterly earnings""", tickerData.quarterly_earnings)
+    
+    
+    #SUSTAINABILITY:
+            
+    st.write("""# Sustainability""", tickerData.sustainability)
+    
+    
+    #RECOMMENDATIONS:
+            
+    st.write("""# Recommendations""", tickerData.recommendations)
+    
+    
+    #NEXT EVENTS:
+            
+    st.write("""# Next event""", tickerData.calendar)
+    
+    
+    
+    return()
+
 
 
 
@@ -267,9 +377,17 @@ def visualization_history(ticker, start_date, end_date, chosen_interval):
 def main():
     
     
+    
     (name,ticker) = choosing_asset()
     
-    st.sidebar.header("Natural Language Processing:")
+    show_info = st.sidebar.button("Show info") 
+    
+    if show_info:
+        
+        st.write("""# Info:""", yf.Ticker(ticker).info)
+        
+    
+    st.sidebar.header("Natural Language Processing")
     
     current_year = date.today().year
  
@@ -281,14 +399,23 @@ def main():
     result_news = st.sidebar.button("Scrape news and analyze sentiment")   
     
     
-    st.sidebar.header("Technical analysis:")
+    st.sidebar.header("Historical graphs")
+    
+    historical_values_max_button = st.sidebar.button("Historical totals")
     
     start_date = st.sidebar.date_input('Start Date (year/month/day)')
     end_date = st.sidebar.date_input('End Date (year/month/day)')
     chosen_interval = st.sidebar.selectbox('Select the interval',('1m','2m','5m','15m','30m','60m','90m','1h','1d','5d','1wk','1mo','3mo'))
         
     
-    historical_values = st.sidebar.button("Show values")
+    historical_values = st.sidebar.button("Historical values in the given period")
+    
+
+    
+    st.sidebar.header("Extra info")
+    
+    extra_features = st.sidebar.button("Get extra info")
+
 
 
     if result_news:
@@ -309,6 +436,19 @@ def main():
     if historical_values:
         
         visualization_history(ticker, start_date, end_date, chosen_interval)
+        
+        
+    if historical_values_max_button:
+        
+        visualization_history_maxperiod(ticker)
+      
+        
+
+    if extra_features:
+        
+        
+        extra_info(ticker)
+       
 
 if __name__ == "__main__":
     main()
