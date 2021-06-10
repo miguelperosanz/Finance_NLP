@@ -1,8 +1,7 @@
 import yfinance as yf
 import streamlit as st
 import matplotlib.pyplot as plt
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline, AutoModel
-import torch
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
 import numpy as np 
 import requests
 from bs4 import BeautifulSoup
@@ -20,7 +19,7 @@ def choosing_asset():
         data = list(reader)
     
     
-    option = st.sidebar.selectbox('Select your financial asset (crypto or stock market)', data, index=0, format_func=lambda o: o[0] +' (' + o[1] +')')
+    option = st.sidebar.selectbox('Select your financial asset (crypto, NYSE, NASDAQ)', data, index=0, format_func=lambda o: o[0] +' (' + o[1] +')')
    
     name = option[0]
     ticker = option[1]
@@ -36,7 +35,7 @@ def scraping(word, period):
     
     def hours():
         
-        for i in range(1,6):
+        for i in range(1,11):
     
             URL = 'https://newslookup.com/results?p='+ str(i) +'&q='+ word +'&dp=5&mt=-1&ps=10&s=&cat=-1&fmt=&groupby=no&site=&dp=5&tp='+ str(number)
                 
@@ -46,7 +45,7 @@ def scraping(word, period):
             soup = BeautifulSoup(content, 'html.parser')
         
             header = soup.find('div', {'id' : 'results'}).find_all('a', {'class' : 'title'})
-            subheader = soup.find('div', {'id' : 'results'}).find_all('p', {'class' : 'desc'})
+            #subheader = soup.find('div', {'id' : 'results'}).find_all('p', {'class' : 'desc'})
         
             for headerclean in header:
                 news.append(headerclean.text)
@@ -56,7 +55,7 @@ def scraping(word, period):
     
     def years():
         
-        for i in range(1,6):
+        for i in range(1,11):
     
             URL = 'https://newslookup.com/results?p='+ str(i) +'&q='+ word +'&dp=5&mt=-1&ps=10&s=&cat=-1&fmt=&groupby=no&site=&dp=5&tp=Y'+ str(year)
             print('URL = ', URL)    
@@ -66,7 +65,7 @@ def scraping(word, period):
             soup = BeautifulSoup(content, 'html.parser')
         
             header = soup.find('div', {'id' : 'results'}).find_all('a', {'class' : 'title'})
-            subheader = soup.find('div', {'id' : 'results'}).find_all('p', {'class' : 'desc'})
+            #subheader = soup.find('div', {'id' : 'results'}).find_all('p', {'class' : 'desc'})
         
             for headerclean in header:
                 news.append(headerclean.text)
@@ -82,7 +81,7 @@ def scraping(word, period):
     
     if period == '< 36 hours':
         
-        for i in range(1,6):
+        for i in range(1,11):
     
             URL = 'https://newslookup.com/results?p='+ str(i) +'&q='+ word +'&dp=5&mt=-1&ps=10&s=&cat=-1&fmt=&groupby=no&site=&dp=5'
             res = requests.get(URL)
@@ -91,7 +90,7 @@ def scraping(word, period):
             soup = BeautifulSoup(content, 'html.parser')
     
             header = soup.find('div', {'id' : 'results'}).find_all('a', {'class' : 'title'})
-            subheader = soup.find('div', {'id' : 'results'}).find_all('p', {'class' : 'desc'})
+            #subheader = soup.find('div', {'id' : 'results'}).find_all('p', {'class' : 'desc'})
     
             for headerclean in header:
                 news.append(headerclean.text)
@@ -233,36 +232,41 @@ def visualization_positivity(negative, positive):
 #VISIUALIZATION HISTORICAL VALUES
 
 def visualization_history(ticker, start_date, end_date, chosen_interval):  
-  
+
     
-    #SYMBOLS
     
     tickerSymbol = str(ticker)
-
+                
     tickerData = yf.Ticker(tickerSymbol)
-       
-    
+                       
+                    
     #DATES FOR CLOSE AND VOLUME    
-
+    
+                
     tickerDf = tickerData.history(interval=chosen_interval, start=start_date, end=end_date)
     
+    print('tickerDf = ', tickerDf)
+    
+    if tickerDf.empty:
+
+        st.write('Data not available for this period of time and interval. Please modify the parameters')
+            
+    else:
+
     
     #CLOSING PRICE
-    
-    st.write("""# Stock closing price""")
-    
-    st.line_chart(data = tickerDf.Close)
-    
-    
+        
+        st.write("""# Stock closing price""")
+        st.line_chart(data = tickerDf.Close)
+        
+                
     #VOLUME
-    
-    st.write("""# Stock volume""")
-    
-    
-    st.line_chart(data = tickerDf.Volume)
+        
+        st.write("""# Stock volume""")        
+        st.line_chart(data = tickerDf.Volume)
     
     
-
+    
     return()
 
 
@@ -376,6 +380,8 @@ def extra_info(ticker):
 
 def main():
     
+    st.sidebar.header("Invest advisor")
+    
     
     
     (name,ticker) = choosing_asset()
@@ -414,7 +420,7 @@ def main():
     
     st.sidebar.header("Extra info")
     
-    extra_features = st.sidebar.button("Get extra info")
+    extra_features = st.sidebar.button("Show extra info")
 
 
 
@@ -446,9 +452,30 @@ def main():
 
     if extra_features:
         
-        
         extra_info(ticker)
-       
+        
+        
+    st.sidebar.header("About")
+    
+    st.sidebar.info('This an open source project. The source code is publicly available on [GitHub](https://github.com/miguelperosanz/Finance_NLP).') 
+    
+    about_me = st.sidebar.button('About me')
+    
+    if about_me:
+        
+        st.write('Hi, my name is Miguel and this is my little tool to help the people to invest in the stock market and \
+                 cryptocurrencies, a topic that I have been interested in since many years ago. The tool has been developed in Python and uses Natural \
+                Language Processing and technical analysis. For the NLP part I have used \
+                the [distilbert-base-uncased-finetuned](https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english) \
+                pretrained model from Hugging Face. The tool scrapes an asset news from the webpage https://newslookup.com\
+                using [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) and then the model analyzes the positivity of the news. I did a [little \
+                study](link) about the efectivity of different models on different headlines. \
+                For the technical analysis I used the [yahoo finances library](https://pypi.org/project/yfinance/) For the design and visualization \
+                I used the fantastic library [Streamlit](https://streamlit.io/) for Python, widely used for data science projects. I hope you like the tool. For any \
+                comment or suggestion feel free to contact me on migueldeperosanz@yahoo.es. Take care!')
+
+          
+
 
 if __name__ == "__main__":
     main()
