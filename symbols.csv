@@ -1,0 +1,400 @@
+Bitcoin,BTC-USD
+Ethereum,ETH-USD
+Tether,USDT-USD
+Binance Coin,BNB-USD
+Cardano,ADA-USD
+Ripple,XRP-USD
+Dogecoin,DOGE-USD
+Polkadot,DOT1-USD
+USD Coin,USDC-USD
+Internet Computer,ICP1-USD
+Uniswap,UNI3-USD
+Bitcoin Cash,BCH-USD
+Polygon,MATIC-USD
+Chainlink,LINK-USD
+Litecoin,LTC-USD
+Stellar,XLM-USD
+Solana,SOL1-USD
+Ethereum Classic,ETC-USD
+Binance Coin USD,BNB-USD
+VeChain,VET-USD
+Theta,THETA-USD
+EOS,EOS-USD
+Tron,TRX-USD
+Filecoin,FIL-USD
+Aave,AAVE-USD
+Monero,XMR-USD
+Neo,NEO-USD
+Maker,MKR-USD
+SHIBA INU,SHIB-USD
+IOTA,MIOTA-USD
+Tezos,XTZ-USD
+Bitcoin SV,BSV-USD
+Crypto.com Coin,CRO-USD
+Cosmos,ATOM1-USD
+Algorand,ALGO-USD
+Terra,LUNA1-USD
+BitTorrent,BTT1-USD
+Kusama,KSM-USD
+Avalanche,AVAX-USD
+Compound,COMP-USD
+Hedera Hashgraph,HBAR-USD
+Dash,DASH-USD
+Elrond,EGLD-USD
+NEM,XEM-USD
+Decred,DCR-USD
+Zcash,ZEC-USD
+Chiliz,CHZ-USD
+yearn.finance,YFI-USD
+Activision Blizzard,ATVI
+Adobe,ADBE
+AMD,AMD
+Alexion Pharmaceuticals,ALXN
+Align Technology,ALGN
+Google,GOOGL
+Google,GOOG
+Amazon,AMZN
+AEP,AEP
+Amgen,AMGN
+Analog Devices,ADI
+Ansys,ANSS
+Apple,AAPL
+Applied Materials,AMAT
+ASML Holding,ASML
+Atlassian,TEAM
+Autodesk,ADSK
+ADP,ADP
+Baidu,BIDU
+Biogen,BIIB
+Booking.com,BKNG
+Broadcom,AVGO
+Cadence Design Systems,CDNS
+CDW,CDW
+Cerner Corp,CERN
+Charter Communications,CHTR
+Check Point Software Technologies,CHKP
+Cintas Corp,CTAS
+Cisco,CSCO
+Cognizant,CTSH
+Comcast,CMCSA
+Copart,CPRT
+Costco,COST
+CSX,CSX
+DexCom,DXCM
+DocuSign,DOCU
+Dollar Tree,DLTR
+eBay,EBAY
+Electronic Arts,EA
+Exelon,EXC
+Facebook,FB
+Fastenal,FAST
+Fiserv,FISV
+Fox Corp,FOXA
+Fox Corp,FOX
+Gilead Sciences,GILD
+Idexx Laboratories,IDXX
+Illumina,ILMN
+Incyte,INCY
+Intel,INTC
+Intuit,INTU
+Intuitive Surgical,ISRG
+JD.com,JD
+Keurig Dr Pepper,KDP
+KLA Corp,KLAC
+Kraft Heinz,KHC
+Lam Research,LRCX
+Lululemon Athletica,LULU
+Marriott,MAR
+Marvell,MRVL
+Match Group,MTCH
+Maxim Integrated Products,MXIM
+MercadoLibre,MELI
+Microchip Technology,MCHP
+Micron Technology,MU
+Microsoft,MSFT
+Moderna,MRNA
+Mondelēz,MDLZ
+Monster Beverage Corporation,MNST
+NetEase,NTES
+Netflix,NFLX
+Nvidia,NVDA
+NXP Semiconductors,NXPI
+O'Reilly Automotive,ORLY
+Okta,OKTA
+Paccar,PCAR
+Paychex,PAYX
+PayPal,PYPL
+Peloton Interactive,PTON
+PepsiCo,PEP
+Pinduoduo,PDD
+Qualcomm,QCOM
+Regeneron,REGN
+Ross Stores,ROST
+Seagen,SGEN
+Sirius XM Holdings,SIRI
+Skyworks Solutions,SWKS
+Splunk,SPLK
+Starbucks,SBUX
+Synopsys,SNPS
+T-Mobile,TMUS
+Tesla,TSLA
+Texas Instruments,TXN
+Trip.com,TCOM
+Verisign,VRSN
+Verisk Analytics,VRSK
+Vertex,VRTX
+Walgreen Boots Alliance,WBA
+Workday,WDAY
+Xcel Energy,XE
+Xilinx,XLNX
+Zoom Video Communications,ZM
+Taiwan Semiconductor,TSM
+Alibaba Group,BABA
+JP Morgan Chase,JPM
+Visa Inc,V
+Johnson & Johnson,JNJ
+Walmart Inc. ,WMT
+UnitedHealth Group,UNH
+Bank of America,BAC
+Mastercard,MA
+Home Depot,HD
+Procter & Gamble,PG
+Walt Disney,DIS
+Exxon Mobil,XOM
+Toyota,TM
+Oracle,ORCL
+Coca-Cola,KO
+Salesforce.com,CRM
+Pfizer,PFE
+Eli Lilly,LLY
+Nike,NKE
+Chevron,CVX
+AT&T,T
+Novartis,NVS
+AbbVie,ABBV
+Wells Fargo,WFC
+BHP Group,BHP
+Abbott Laboratories,ABT
+Novo Nordisk,NVO
+Merck & Company,MRK
+United Parcel Service,UPS
+Accenture,ACN
+McDonald's,MCD
+Thermo Fisher Scientific,TMO
+Morgan Stanley,MS
+Danaher Corporation,DHR
+SAP SE,SAP
+Medtronic,MDT
+Citigroup,C
+Unilever,UL
+BHP Group,BBL
+Anheuser-Busch Inbev,BUD
+Shopify,SHOP
+Linde,LIN
+Philip Morris,PM
+Royal Bank Of Canada,RY
+Boeing Company,BA
+Union Pacific,UNP
+Cosan S.A.,CSAN
+Rio Tinto,RIO
+Bristol-Myers,BMY
+Charles Schwab Corporation,SCHW
+HDFC Bank,HDB
+NextEra Energy,NEE
+Sea Limited American Depositary Shares,SE
+Raytheon Technologies,RTX
+Lowe's Companies,LOW
+BlackRock,BLK
+American Express,AXP
+International Business Machines Corporation,IBM
+Toronto Dominion Bank,TD
+Caterpillar,CAT
+Goldman Sachs,GS
+HSBC Holdings,HSBC
+Total SE,TOT
+Sony Group,SONY
+General Electric,GE
+American Tower Corporation,AMT
+3M Company,MMM
+Target Corporation,TGT
+Diageo,DEO
+CVS Health Corporation,CVS
+VALE S.A.,VALE
+Deere & Company,DE
+Estee Lauder Companies,EL
+Lockheed Martin,LMT
+GlaxoSmithKline,GSK
+Square,SQ
+Anthem,ANTM
+Snap,SNAP
+Stryker,SYK
+BP,BP
+Uber Technologies,UBER
+General Motors,GM
+S&P Global,SPGI
+Altria Group,MO
+Prologis,PLD
+ServiceNow,NOW
+British American Tobacco Industries,BTI
+U.S. Bancorp,USB
+Fidelity National Information Services,FIS
+Crown Castle International,CCI
+Cigna Corporation,CI
+Infosys,INFY
+Zoetis,ZTS
+PNC Financial Services,PNC
+ConocoPhillips,COP
+Bank Nova Scotia,BNS
+Truist Financial,TFC
+FedEx,FDX
+Enbridge,ENB
+PetroChina Company,PTR
+Dell Technologies,DELL
+TJX Companies,TJX
+Brookfield Asset Management,BAM
+Canadian National Railway,CNI
+Duke Energy Corporation,DUK
+Petroleo Brasileiro S.A.,PBR
+Chubb Limited,CB
+Westpac Banking,WBK
+Equinor ASA,EQNR
+Sherwin-Williams Company,SHW
+Mitsubishi UFJ,MUFG
+Snowflake Inc.,SNOW
+Illinois Tool Works,ITW
+Capital One Financial,COF
+Banco Santander, S.A.,SAN
+NIO Inc.,NIO
+ABB Ltd,ABB
+Colgate-Palmolive,CL
+Marsh & McLennan Companies,MMC
+Becton, Dickinson and Company,BDX
+HCA Healthcare,HCA
+Norfolk Southern Corporation,NSC
+Bank Of Montreal,BMO
+Vmware,VMW
+Banco Santander Brasil,BSBR
+Southern Company,SO
+The Blackstone Group,BX
+Stellantis,STLA
+Air Products and Chemicals,APD
+Coupang,CPNG
+China Petroleum & Chemical Corporation,SNP
+Itau Unibanco Banco,ITUB
+Moody's Corporation,MCO
+Intercontinental Exchange,ICE
+Ford Motor Company,F
+ICICI Bank,IBN
+Ambev S.A.,ABEV
+Dominion Energy,D
+Ecolab,ECL
+Freeport-McMoRan,FCX
+Edwards Lifesciences Corporation,EW
+Banco Bradesco Sa,BBD
+Northrop Grumman,NOC
+Boston Scientific Corporation,BSX
+Emerson Electric Company,EMR
+Waste Management,WM
+Eaton Corporation,ETN
+China Life Insurance,LFC
+UBS Group,UBS
+MetLife,MET
+Honda Motor,HMC
+Global Payments,GPN
+Progressive Corporation,PGR
+Newmont Corporation,NEM
+Aon plc,AON
+KE Holdings,BEKE
+Twilio,TWLO
+Prudential Public,PUK
+Humana Inc.,HUM
+General Dynamics Corporation,GD
+Ferrari,RACE
+Enterprise Products Partners,EPD
+Canadian Pacific Railway,CP
+Canadian Imperial Bank of Commerce,CM
+ING Group,ING
+Southern Copper Corporation,SCCO
+Takeda Pharmaceutical,TAK
+America Movil, Class A,AMOV
+America Movil, S.A.B.,AMX
+Roblox Corporation,RBLX
+Dow Inc.,DOW
+TC Energy,TRP
+Public Storage Common Stock,PSA
+RELX PLC,RELX
+Banco Bradesco Sa,BBDO
+EOG Resources,EOG
+Koninklijke Philips,PHG
+Schlumberger N.V.,SLB
+Sumitomo Mitsui Financial Group,SMFG
+Lloyds Banking Group,LYG
+Thomson Reuters,TRI
+Dollar General Corporation,DG
+Johnson Controls International,JCI
+Carvana Co.,CVNA
+Roper Technologies,ROP
+Twitter,TWTR
+National Grid Transco,NGG
+Spotify,SPOT
+Constellation Brands,STZ
+American International Group,AIG
+BCE,BCE
+Palantir Technologies,PLTR
+ENI S.p.A.,E
+TE Connectivity,TEL
+Barclays,BCS
+DuPont de Nemours,DD
+IHS Markit,INFO
+Digital Realty Trust,DLR
+The Bank of New York Mellon,BK
+IQVIA Holdings,IQV
+L3Harris Technologies,LHX
+Wipro Limited Common Stock,WIT
+Veeva Systems,VEEV
+Canadian Natural Resources Limited,CNQ
+Simon Property Group,SPG
+DoorDash,DASH
+Trane Technologies,TT
+Kimberly-Clark Corporation,KMB
+Aptiv PLC,APTV
+Banco Bilbao Vizcaya Argentaria S.A.,BBVA
+Las Vegas Sands,LVS
+Prudential Financial,PRU
+Kinder Morgan,KMI
+PPG Industries,PPG
+Agilent Technologies,A
+Pinterest,PINS
+Marathon Petroleum Corporation,MPC
+Centene Corporation,CNC
+CRH PLC American Depositary Shares,CRH
+Pioneer Natural Resources Company,PXD
+Barrick Gold Corporation,GOLD
+Sysco Corporation,SYY
+Sempra Energy,SRE
+Baxter International,BAX
+Amphenol Corporation,APH
+Phillips 66,PSX
+Manulife Financial Corporation,MFC
+Carrier Global Corporation,CARR
+Allstate Corporation,ALL
+Parker-Hannifin Corporation,PH
+Mizuho Financial Group,MFG
+The Travelers Companies,TRV
+UiPath,PATH
+AFLAC Incorporated,AFL
+General Mills,GIS
+Archer-Daniels-Midland,ADM
+MSCI Inc.,MSCI
+Suncor Energy,SU
+LyondellBasell,LYB
+Cummins Inc.,CMI
+HP Inc.,HPQ
+Discover Financial Services,DFS
+Chipotle Mexican Grill,CMG
+Carnival Corporation,CCL
+Nutrien,NTR
+Transdigm Group,TDG
+Corning Incorporated,GLW
+Internationa Flavors & Fragrances,IFF
+The Hershey Company,HSY
