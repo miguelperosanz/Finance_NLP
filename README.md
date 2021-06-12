@@ -10,4 +10,4 @@ https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english
 
 A negative sentiment would imply a bad moment for investing. A positive sentiment would mean an upward trend.
 
-The tool has been extended by introducing graphs with the historical values of the stock and crypto assets. In the end it is intended to become a tool for helping the investors to make decissions about when buying or selling. The scripts will be converted into a shareable web app by means of the use of streamlit. For the visualization I am using the streamlit library.
+The tool has been extended by introducing graphs with the historical values of the stock and crypto assets. In the end it is intended to become a tool for helping the investors to make decissions about when buying or selling. The scripts will be converted into a shareable web app by means of the use of streamlit. 
