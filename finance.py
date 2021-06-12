@@ -469,10 +469,10 @@ def main():
                 the [distilbert-base-uncased-finetuned](https://huggingface.co/distilbert-base-uncased-finetuned-sst-2-english) \
                 pretrained model from Hugging Face. The tool scrapes an asset news from the webpage https://newslookup.com\
                 using [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) and then the model analyzes the positivity of the news. I did a [little \
-                study](link) about the efectivity of different models on different headlines. \
+                study](https://github.com/miguelperosanz/Finance_NLP/blob/main/Screenshot%20from%202021-06-11%2000-21-00.png?raw=true) about the efectivity of different models on different headlines. \
                 For the technical analysis I used the [yahoo finances library](https://pypi.org/project/yfinance/) For the design and visualization \
-                I used the fantastic library [Streamlit](https://streamlit.io/) for Python, widely used for data science projects. I hope you like the tool. For any \
-                comment or suggestion feel free to contact me on migueldeperosanz@yahoo.es. Take care!')
+                I used the fantastic library [Streamlit](https://streamlit.io/) for Python, widely used for data science projects. I hope you like the tool. \
+                For any comment or suggestion feel free to contact me on migueldeperosanz@yahoo.es. Take care!')
 
           
 
