@@ -1,2 +1,3 @@
 yfinance==0.1.59
 matplotlib==3.4.2
+transformers==4.6.1
