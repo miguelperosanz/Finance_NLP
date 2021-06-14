@@ -1,2 +1,2 @@
 yfinance==0.1.59
-matplotlib @ file:///tmp/build/80754af9/matplotlib-base_1592846008246/work
+matplotlib==3.4.2
