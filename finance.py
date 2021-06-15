@@ -29,6 +29,7 @@ def choosing_asset():
  
 
 #WEBSCRAPING FUNCTION:
+@st.cache
 def scraping(word, period):
     
     def hours():
