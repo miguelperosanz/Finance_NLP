@@ -29,7 +29,7 @@ def choosing_asset():
  
 
 #WEBSCRAPING FUNCTION:
-@st.cache
+
 def scraping(word, period):
     
     def hours():
@@ -181,6 +181,7 @@ def scraping(word, period):
 
 
 #GETTING SENTIMENTS FUNCTION:
+@st.cache
 def getting_feeling(group_of_news):
     
     tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased-finetuned-sst-2-english")
