@@ -11,7 +11,6 @@ from datetime import date
 
 
 #CHOOSING ASSET MENU:
-@st.cache    
 def choosing_asset():
     
     with open('symbols.csv', newline='') as f:
