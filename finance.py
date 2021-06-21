@@ -410,7 +410,7 @@ def main():
     
     start_date = st.sidebar.date_input('Start Date (year/month/day)')
     end_date = st.sidebar.date_input('End Date (year/month/day)')
-    chosen_interval = st.sidebar.selectbox('Select the interval',('1m','2m','5m','15m','30m','60m','90m','1h','1d','5d','1wk','1mo','3mo'))
+    chosen_interval = st.sidebar.selectbox('Select the interval',('1m','2m','5m','15m','30m','1h','90m','1d','5d','1wk','1mo','3mo'))
         
     
     historical_values = st.sidebar.button("Historical values in the given period")
