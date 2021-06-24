@@ -30,7 +30,7 @@ def choosing_asset():
  
 
 #WEBSCRAPING FUNCTION:
-@st.cache
+
 def scraping(word, period):
     
     def hours():
@@ -181,7 +181,7 @@ def scraping(word, period):
 
 
 #LOADING THE MODEL
-@st.cache
+
 def load_model():
 
     tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased-finetuned-sst-2-english")
@@ -196,7 +196,7 @@ def load_model():
 
 
 #GETTING SENTIMENTS FUNCTION:
-@st.cache
+
 def getting_feeling(group_of_news,classifier):
     
     rates=[]
@@ -239,7 +239,7 @@ def visualization_positivity(negative, positive):
     return()
 
 
-#VISIUALIZATION HISTORICAL VALUES
+#VISUALIZATION HISTORICAL VALUES
 
 def visualization_history(ticker, start_date, end_date, chosen_interval):  
 
