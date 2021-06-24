@@ -11,6 +11,7 @@ from datetime import date
 
 
 #CHOOSING ASSET MENU:
+    
 def choosing_asset():
     
     with open('symbols.csv', newline='') as f:
@@ -29,7 +30,7 @@ def choosing_asset():
  
 
 #WEBSCRAPING FUNCTION:
-
+@st.cache
 def scraping(word, period):
     
     def hours():
@@ -51,7 +52,7 @@ def scraping(word, period):
         
         return()
     
-  
+    
     def years():
         
         for i in range(1,11):
@@ -179,15 +180,25 @@ def scraping(word, period):
     return (news)
 
 
+#LOADING THE MODEL
+@st.cache
+def load_model():
+
+    tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased-finetuned-sst-2-english")
+    global model
+    model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased-finetuned-sst-2-english")
+    global classifier
+    
+    classifier = pipeline(task="sentiment-analysis", model=model, tokenizer=tokenizer, return_all_scores=True)
+   
+    return(classifier)
+
+
 
 #GETTING SENTIMENTS FUNCTION:
 @st.cache
-def getting_feeling(group_of_news):
+def getting_feeling(group_of_news,classifier):
     
-    tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased-finetuned-sst-2-english")
-    model = AutoModelForSequenceClassification.from_pretrained("distilbert-base-uncased-finetuned-sst-2-english")
-    classifier = pipeline(task="sentiment-analysis", model=model, tokenizer=tokenizer, return_all_scores=True)
-
     rates=[]
 
     for new in group_of_news:
@@ -379,6 +390,8 @@ def extra_info(ticker):
 
 def main():
     
+    
+    
     st.sidebar.header("Invest advisor")
     
     
@@ -420,16 +433,17 @@ def main():
     st.sidebar.header("Extra info")
     
     extra_features = st.sidebar.button("Show extra info")
-
+    
 
 
     if result_news:
         
-        
+        classifier = load_model()
     
         news = scraping(name, period) 
+        
 
-        (negative_feeling, positive_feeling) = getting_feeling(news)
+        (negative_feeling, positive_feeling) = getting_feeling(news, classifier)
 
         visualization_positivity(negative_feeling, positive_feeling)
         
